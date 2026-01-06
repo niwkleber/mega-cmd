@@ -1,13 +1,16 @@
 FROM ubuntu:24.04@sha256:c35e29c9450151419d9448b0fd75374fec4fff364a27f176fb458d472dfc9e54
 
-RUN apt-get update \
+ENV TZ=America/Sao_Paulo
+
+RUN DEBIAN_FRONTEND=noninteractive \
+    && apt-get update \
 
     # Upgrade
     && apt-get upgrade -y \
     && apt-get dist-upgrade -y \
 
     # Install dependencies
-    && apt-get install wget -y \
+    && apt-get install wget tzdata -y \
 
     # Cleanup
     && apt-get purge -y \
